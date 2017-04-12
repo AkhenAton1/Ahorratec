@@ -1,11 +1,18 @@
 # Ahorratec
 Personal install
 
+sudo apt-get update
+
 sudo apt-get install apache2 mysql-server mysql-client php libapache2-mod-php php-mysql php-curl php-pear php-dev php-mcrypt php-json git-core redis-server build-essential ufw ntp -y
 
 sudo apt-get install php-pear
 sudo pear channel-discover pear.swiftmailer.org
 sudo pear install swift/swift
+
+sudo sh -c 'echo "extension=dio.so" > /etc/php/7.0/apache2/conf.d/20-dio.ini'
+sudo sh -c 'echo "extension=dio.so" > /etc/php/7.0/cli/conf.d/20-dio.ini'
+sudo sh -c 'echo "extension=redis.so" > /etc/php/7.0/apache2/conf.d/20-redis.ini'
+sudo sh -c 'echo "extension=redis.so" > /etc/php/7.0/cli/conf.d/20-redis.ini'
 
 sudo a2enmod rewrite
 sudo sh -c "echo '<Directory /var/www/html/emoncms>' >> /etc/apache2/sites-available/emoncms.conf"
@@ -24,6 +31,7 @@ sudo service apache2 reload
  cd html
  git clone -b stable https://github.com/emoncms/emoncms.git
 
+ mysql -u root -p
  CREATE DATABASE ahorratec DEFAULT CHARACTER SET utf8;
  CREATE USER 'erick'@'localhost' IDENTIFIED BY 'Ahorratec4462';
  GRANT ALL ON ahorratec.* TO 'erick'@'localhost';
@@ -33,7 +41,6 @@ sudo service apache2 reload
 sudo mkdir /var/lib/phpfiwa
 sudo mkdir /var/lib/phpfina
 sudo mkdir /var/lib/phptimeseries
-
 sudo chown www-data:root /var/lib/phpfiwa
 sudo chown www-data:root /var/lib/phpfina
 sudo chown www-data:root /var/lib/phptimeseries
@@ -42,17 +49,30 @@ cd /var/www/html/emoncms/
 cp default.settings.php settings.php
 nano settings.php
 
+cd /var/www/html/emoncms/Modules
+git clone https://github.com/emoncms/dashboard.git
+git clone https://github.com/emoncms/app.git
+
 sudo apt-get install gettext
 sudo dpkg-reconfigure locales
+
+sudo reboot
+
 sudo locale-gen es_ES
+
 //Editar archivo locale 
- 
+
+
+sudo -i
+passwd
+
+cd /var/www/html/emoncms/scripts/logger/ && sudo chmod +x install.sh
+
+touch /var/log/emoncms.log
+chmod 666 /var/log/emoncms.log
+
+//para errores 
+
 tail -n 999 /var/log/syslog | less
 
  
-cd /var/www/html/emoncms/scripts/logger/ && sudo chmod +x install.sh
-
-
-su psswrd
-touch /var/log/emoncms.log
-chmod 666 /var/log/emoncms.log
