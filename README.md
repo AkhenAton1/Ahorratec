@@ -1,6 +1,8 @@
 # Ahorratec
 Personal install
 
+34.210.14.12
+
 sudo apt-get update
 
 sudo apt-get install apache2 mysql-server mysql-client php libapache2-mod-php php-mysql php-curl php-pear php-dev php-mcrypt php-json git-core redis-server build-essential ufw ntp -y
@@ -55,12 +57,10 @@ git clone https://github.com/emoncms/app.git
 
 sudo apt-get install gettext
 sudo dpkg-reconfigure locales
+//Editar archivo locale 
+sudo locale-gen es_ES //sirve?
 
 sudo reboot
-
-sudo locale-gen es_ES
-
-//Editar archivo locale 
 
 
 sudo -i
@@ -70,6 +70,7 @@ cd /var/www/html/emoncms/scripts/logger/ && sudo chmod +x install.sh
 
 touch /var/log/emoncms.log
 chmod 666 /var/log/emoncms.log
+
 
 //para errores 
 
