@@ -58,10 +58,6 @@ git clone https://github.com/emoncms/app.git
 sudo apt-get install gettext
 sudo dpkg-reconfigure locales
 //Editar archivo locale 
-sudo locale-gen es_ES //sirve?
-
-sudo reboot
-
 
 sudo -i
 passwd
@@ -70,6 +66,8 @@ cd /var/www/html/emoncms/scripts/logger/ && sudo chmod +x install.sh
 
 touch /var/log/emoncms.log
 chmod 666 /var/log/emoncms.log
+
+sudo reboot
 
 
 //para errores 
