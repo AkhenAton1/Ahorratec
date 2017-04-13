@@ -1,7 +1,7 @@
 # Ahorratec
 Personal install
 
-34.210.14.12
+34.210.37.67
 
 sudo apt-get update
 
@@ -9,8 +9,8 @@ sudo apt-get install apache2 mysql-server mysql-client php libapache2-mod-php ph
 
 sudo apt-get install php-pear
 sudo pear channel-discover pear.swiftmailer.org
-sudo pear install swift/swift
-
+sudo pecl install swift/swift dio-0.0.9 redis
+    
 sudo sh -c 'echo "extension=dio.so" > /etc/php/7.0/apache2/conf.d/20-dio.ini'
 sudo sh -c 'echo "extension=dio.so" > /etc/php/7.0/cli/conf.d/20-dio.ini'
 sudo sh -c 'echo "extension=redis.so" > /etc/php/7.0/apache2/conf.d/20-redis.ini'
@@ -34,9 +34,9 @@ sudo service apache2 reload
  git clone -b stable https://github.com/emoncms/emoncms.git
 
  mysql -u root -p
- CREATE DATABASE ahorratec DEFAULT CHARACTER SET utf8;
- CREATE USER 'erick'@'localhost' IDENTIFIED BY 'Ahorratec4462';
- GRANT ALL ON ahorratec.* TO 'erick'@'localhost';
+ CREATE DATABASE AhorratecDB DEFAULT CHARACTER SET utf8;
+ CREATE USER 'admin'@'localhost' IDENTIFIED BY 'Ahorratec4462';
+ GRANT ALL ON AhorratecDB.* TO 'admin'@'localhost';
  flush privileges;
  exit
  
