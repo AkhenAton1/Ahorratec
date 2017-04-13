@@ -17,7 +17,7 @@ sudo sh -c 'echo "extension=redis.so" > /etc/php/7.0/apache2/conf.d/20-redis.ini
 sudo sh -c 'echo "extension=redis.so" > /etc/php/7.0/cli/conf.d/20-redis.ini'
 
 sudo a2enmod rewrite
-sudo sh -c "echo '<Directory /var/www/html/emoncms>' >> /etc/apache2/sites-available/emoncms.conf"
+sudo sh -c "echo '<Directory /var/www/html/sistema>' >> /etc/apache2/sites-available/emoncms.conf"
 sudo sh -c "echo '  Options FollowSymLinks' >> /etc/apache2/sites-available/emoncms.conf"
 sudo sh -c "echo '  AllowOverride All' >> /etc/apache2/sites-available/emoncms.conf"
 sudo sh -c "echo '  DirectoryIndex index.php' >> /etc/apache2/sites-available/emoncms.conf"
@@ -25,7 +25,7 @@ sudo sh -c "echo '  Order allow,deny' >> /etc/apache2/sites-available/emoncms.co
 sudo sh -c "echo '  Allow from all' >> /etc/apache2/sites-available/emoncms.conf"
 sudo sh -c "echo '</Directory>' >> /etc/apache2/sites-available/emoncms.conf"
 sudo ln -s /etc/apache2/sites-available/emoncms.conf /etc/apache2/sites-enabled/
-sudo a2ensite emoncms
+sudo a2ensite sistema
 sudo service apache2 reload
  
  cd /var/www/
